@@ -43,7 +43,7 @@ public class UnityOdometryPublisher : MonoBehaviour
     private TimeMsg GetROSTime()
     {
         double t = Time.timeAsDouble;
-        uint sec = (uint)t;
+        int sec = (int)t;
         uint nanosec = (uint)((t - sec) * 1e9);
         return new TimeMsg(sec, nanosec);
     }

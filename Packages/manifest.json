@@ -1,5 +1,7 @@
 {
   "dependencies": {
+    "com.frj.unity-sensors": "https://github.com/Field-Robotics-Japan/UnitySensors.git?path=/Assets/UnitySensors#v2.0.5",
+    "com.frj.unity-sensors-ros": "https://github.com/Field-Robotics-Japan/UnitySensors.git?path=/Assets/UnitySensorsROS#v2.0.5",
     "com.unity.cinemachine": "2.10.5",
     "com.unity.collab-proxy": "2.10.2",
     "com.unity.feature.development": "1.0.2",
