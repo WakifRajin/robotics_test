@@ -108,18 +108,28 @@ public class CarControl : MonoBehaviour
     {
         carRigidbody = GetComponent<Rigidbody>();
         ros = ROSConnection.GetOrCreateInstance();
-        ros.Subscribe<TwistStampedMsg>("/panther/cmd_vel", CmdVelCallback);
+        //ros.Subscribe<TwistStampedMsg>("/cmd_vel", CmdVelCallback);
+        ros.Subscribe<TwistMsg>("/cmd_vel", CmdVelCallback);
         
         linearPID = new PIDController(linearKp, linearKi, linearKd);
         angularPID = new PIDController(angularKp, angularKi, angularKd);
     }
 
-    private void CmdVelCallback(TwistStampedMsg msg)
+    // private void CmdVelCallback(TwistStampedMsg msg)
+    // {
+    //     cmdVelLinear = 2*(float)msg.twist.linear.x;
+    //     cmdVelAngular = 2*(float)msg.twist.angular.z;
+    //     useCmdVel = true;
+    //     lastCmdVelTime = Time.time; 
+    // }
+    private void CmdVelCallback(TwistMsg msg)
     {
-        cmdVelLinear = 2*(float)msg.twist.linear.x;
-        cmdVelAngular = 2*(float)msg.twist.angular.z;
+        // Access linear and angular directly
+        cmdVelLinear = 2f * (float)msg.linear.x;
+        cmdVelAngular = 2f * (float)msg.angular.z;
+
         useCmdVel = true;
-        lastCmdVelTime = Time.time; 
+        lastCmdVelTime = Time.time;
     }
 
     private void Update()
